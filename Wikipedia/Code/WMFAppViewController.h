@@ -1,5 +1,6 @@
 @import UIKit;
 @import UserNotifications;
+@import CoreLocation;
 @class WMFTheme;
 @class MWKDataStore;
 @class WMFTheme;
@@ -38,6 +39,9 @@ extern NSString *const WMFLanguageVariantAlertsLibraryVersion; // NSNumber
 
 /// Returning WMFArticleViewController (which is ArticleViewController in Swift) makes this not work from Swift
 - (void)swiftCompatibleShowArticleWithURL:(NSURL *)articleURL animated:(BOOL)animated completion:(nonnull dispatch_block_t)completion;
+
+// open Places screen with this location
+- (void)openLocation:(CLLocation *)location;
 
 @end
 

@@ -1,4 +1,5 @@
 @import Foundation;
+@import CoreLocation;
 #import <WMF/NSURL+WMFLinkParsing.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -186,6 +187,13 @@ extern NSString *const WMFEditPencil;
  *  Returns @c wmf_languageVariantCode if non-nil and non-empty string, @c wmf_languageCode otherwise
  */
 @property (nonatomic, copy, readonly, nullable) NSString *wmf_contentLanguageCode;
+
+/**
+ *  Returns @c location from url if   @c latitude and  @c longitude in the link non-nil and non-empty string
+ *  Example for link that have location "wikipedia://location?latitude=30.093850&longitude=31.0168051008"
+ *
+ */
+@property (nonatomic, copy, readonly, nullable) CLLocation *wmf_location;
 
 #pragma mark - Introspection
 

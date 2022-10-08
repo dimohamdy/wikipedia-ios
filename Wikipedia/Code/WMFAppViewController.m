@@ -1117,6 +1117,7 @@ NSString *const WMFLanguageVariantAlertsLibraryVersion = @"WMFLanguageVariantAle
     switch ([activity wmf_type]) {
         case WMFUserActivityTypeExplore:
         case WMFUserActivityTypePlaces:
+        case WMFUserActivityTypeLocation:
         case WMFUserActivityTypeSavedPages:
         case WMFUserActivityTypeHistory:
         case WMFUserActivityTypeSearch:
@@ -1173,6 +1174,20 @@ NSString *const WMFLanguageVariantAlertsLibraryVersion = @"WMFLanguageVariantAle
                 // For "View on a map" action to succeed, view mode has to be set to map.
                 [[self placesViewController] updateViewModeToMap];
                 [[self placesViewController] showArticleURL:articleURL];
+            }
+        } break;
+        case WMFUserActivityTypeLocation: {
+            [self dismissPresentedViewControllers];
+            [self setSelectedIndex:WMFAppTabTypePlaces];
+            [self.navigationController popToRootViewControllerAnimated:animated];
+            NSNumber *latitude = activity.userInfo[@"latitude"];
+            NSNumber *longitude = activity.userInfo[@"longitude"];
+            CLLocation *location = [[CLLocation alloc]initWithLatitude: latitude.doubleValue longitude:longitude.doubleValue];
+
+            if (location) {
+                // For "View on a map" action to succeed, view mode has to be set to map.
+                [[self placesViewController] updateViewModeToMap];
+                [[self placesViewController] showLocation:location];
             }
         } break;
         case WMFUserActivityTypeContent: {

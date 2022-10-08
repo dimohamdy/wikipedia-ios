@@ -1,7 +1,6 @@
 import UIKit
 import WMF
 import CocoaLumberjackSwift
-
 import MapKit
 
 @objc(WMFPlacesViewController)
@@ -1947,6 +1946,11 @@ class PlacesViewController: ViewController, UISearchBarDelegate, ArticlePopoverV
         let displayTitle = article.displayTitle ?? title
         let searchResult = MWKSearchResult(articleID: 0, revID: 0, title: title, displayTitle: displayTitle, displayTitleHTML: displayTitleHTML, wikidataDescription: article.wikidataDescription, extract: article.snippet, thumbnailURL: article.thumbnailURL, index: nil, titleNamespace: nil, location: article.location)
         currentSearch = PlaceSearch(filter: .top, type: .location, origin: .user, sortStyle: .links, string: nil, region: region, localizedDescription: title, searchResult: searchResult, siteURL: articleURL.wmf_site)
+    }
+
+    @objc public func showLocation(_ location: CLLocation) {
+        // Get the location
+        zoomAndPanMapView(toLocation: location)
     }
     
     fileprivate func searchForFirstSearchSuggestion() {

@@ -207,6 +207,10 @@ extension URL {
     public var doesOpenInBrowser: Bool {
         return Configuration.current.router.doesOpenInBrowser(for: self)
     }
+
+    public var wmf_location: CLLocation? {
+        return (self as NSURL).wmf_location
+    }
 }
 
 @objc extension NSURL {

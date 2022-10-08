@@ -288,6 +288,16 @@ static id wmf_languageVariantAssociatedObjectKey;
     }
 }
 
+- (nullable CLLocation *)wmf_location {
+    NSString* latitudeStr = [self wmf_valueForQueryKey:@"latitude"];
+    NSString* longitudeStr = [self wmf_valueForQueryKey:@"longitude"];
+    // TODO: Need to validate the value of latitude or longitude
+    float latitude  = [latitudeStr floatValue];
+    float longitude = [longitudeStr floatValue];
+
+    return [[CLLocation alloc] initWithLatitude: latitude longitude:longitude];
+}
+
 @end
 
 #pragma mark - WMFInMemoryURLKey
